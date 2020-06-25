@@ -5,9 +5,7 @@ import actions from './actions/actions';
 import './Modal.css';
 import Board from './components/Board.jsx';
 import Nav from './components/Nav.jsx';
-import Modal from './components/Modal.jsx';
 import ScoresPanel from './components/ScoresPanel.jsx';
-import useModal from './common/useModal';
 
 const App = () => {
   const [press, setPressed] = useState(false);
