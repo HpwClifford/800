@@ -5,7 +5,6 @@ import actions from './actions/actions';
 import './Modal.css';
 import Board from './components/Board.jsx';
 import Nav from './components/Nav.jsx';
-import ScoresPanel from './components/ScoresPanel.jsx';
 
 const App = () => {
   const [press, setPressed] = useState(false);
@@ -31,7 +30,10 @@ const App = () => {
 
   const getHighScores = () => {
     fetch('/scores')
-      .then((scores) => console.log('scores: ', scores))
+      .then((scores) => {
+        console.log('scores: ', scores);
+        dispatch(actions.UPDATE_LEADERBOARD);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -42,17 +44,15 @@ const App = () => {
   };
 
   useEffect(() => {
-    const board = document.querySelector('.board');
-    board.addEventListener('keydown', keyDownHandle);
+    const board = document.querySelector('.game-container');
+    board.setAttribute('tabindex', 0);
+    board.addEventListener('keydown', keyDownHandle, true);
   }, []);
 
   return (
-    <div className="container">
+    <div className="app">
       <Nav />
-      <div className="game-container">
-        <ScoresPanel />
-        <Board />
-      </div>
+      <Board />
     </div>
   );
 };

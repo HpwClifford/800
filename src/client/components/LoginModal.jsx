@@ -2,13 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Login from './Login.jsx';
+import Signup from './Signup.jsx';
 
-const Modal = ({ isShowing, hide }) =>
+const LoginModal = ({ isShowing, hide, isLogin }) =>
   isShowing
     ? ReactDOM.createPortal(
         <>
           <div className="modal-overlay" />
-          <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
+          <div
+            className="modal-wrapper"
+            aria-modal
+            aria-hidden
+            tabIndex={-1}
+            role="dialog"
+          >
             <div className="modal">
               <div className="modal-header">
                 <button
@@ -21,7 +28,7 @@ const Modal = ({ isShowing, hide }) =>
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <Login />
+              {isLogin ? <Login /> : <Signup />}
             </div>
           </div>
         </>,
@@ -29,4 +36,4 @@ const Modal = ({ isShowing, hide }) =>
       )
     : null;
 
-export default Modal;
+export default LoginModal;
